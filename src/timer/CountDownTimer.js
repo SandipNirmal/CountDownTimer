@@ -7,6 +7,7 @@ export default class CountDownTimer extends React.Component {
     constructor(props) {
         super(props);
 
+        // Set initial states for the countdown
         this.state = {
             isTicking: false,
             isActive: false,
@@ -14,6 +15,9 @@ export default class CountDownTimer extends React.Component {
         }
     }
 
+    /**
+     * Method to start the countdown timer
+     */
     startTimer = () => {
         this.setState({
             isTicking: true,
@@ -25,6 +29,9 @@ export default class CountDownTimer extends React.Component {
             1000);
     }
 
+    /**
+     * Method to stop countdown timer
+     */
     stopTimer = () => {
         clearInterval(this.timerId);
 
@@ -33,16 +40,45 @@ export default class CountDownTimer extends React.Component {
         });
     }
 
+    /**
+     * React lifecycle hook event on component init
+     */
     componentDidMount() {
         this.setState({
             duration: this.props.activeDuration
         });
     }
 
+    /**
+     * React lifecycle hook event before component destruction
+     */
     componentWillUnmount() {
         this.stopTimer();
     }
 
+    /**
+     * React lifecycle hook event on component update
+     */
+    componentWillUpdate() {
+        const currDur = this.state.duration;
+
+        if (currDur) {
+            return currDur - 1;
+        } else if (this.state.isActive) {
+
+            this.setState(prevState => ({
+                isActive: !prevState.isActive
+            }));
+        } else {
+            this.setState(prevState => ({
+                isActive: !prevState.isActive
+            }));
+        }
+    }
+
+    /**
+     * Defines how component to be rendered
+     */
     render() {
         return <div>
             <h3> Timer </h3>
@@ -56,6 +92,9 @@ export default class CountDownTimer extends React.Component {
         </div>
     }
 
+    /**
+     * Method to update count down duration
+     */
     tick() {
         this.setState(prevState => ({
             duration: this.getDuration(prevState.duration)
@@ -69,23 +108,13 @@ export default class CountDownTimer extends React.Component {
      * @returns {number} updated duration
      */
     getDuration = (currDur) => {
-        if (currDur) {
-            return currDur - 1;
-        } else if (this.state.isActive) {
-
-            this.setState({
-                isActive: false
-            });
-
-            return this.props.breakDuration;
-        } else {
-
-            this.setState({
-                isActive: false
-            });
-
-            return this.props.activeDuration;
-        }
+        return (currDur
+            ? currDur - 1
+            : (this.state.isActive
+                ? this.props.breakDuration
+                : this.props.activeDuration
+            )
+        );
     }
 }
 
