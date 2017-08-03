@@ -42,6 +42,18 @@ export default class CountDownTimer extends React.Component {
     }
 
     /**
+     * Resets the timer
+     */
+    resetTimer = () => {
+        this.stopTimer();
+
+        // set duration to the active duration
+        this.setState({
+            duration: this.props.activeDuration
+        });
+    }
+
+    /**
      * React lifecycle hook event on component init
      */
     componentDidMount() {
@@ -97,10 +109,15 @@ export default class CountDownTimer extends React.Component {
         return (<div>
             <FormattedDuration duration={this.state.duration} isActive={this.state.isActive} />
 
-            {this.state.isTicking
-                ? <button className="btn btn-primary" onClick={this.stopTimer}>Stop</button>
-                : <button className="btn btn-primary" onClick={this.startTimer}>Start</button>
-            }
+            <div className="actions">
+
+                {this.state.isTicking
+                    ? <button className="btn btn-round btn-red btn-animate" onClick={this.stopTimer}>Stop</button>
+                    : <button className="btn btn-primary btn-round" onClick={this.startTimer}>Start</button>
+                }
+
+                <button className="btn btn-secondary btn-round" onClick={this.resetTimer}>Reset</button>
+            </div>
         </div>)
     }
 
