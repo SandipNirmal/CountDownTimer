@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormattedDuration from './FormattedDuration';
-// import Notification from './../Notification';
+import { notify } from './../Notifier';
 
 export default class CountDownTimer extends React.Component {
 
@@ -24,8 +24,6 @@ export default class CountDownTimer extends React.Component {
             isTicking: true,
             isActive: true
         });
-
-        // Notification.notifyMe();
 
         this.timerId = setInterval(
             () => this.tick(),
@@ -68,14 +66,27 @@ export default class CountDownTimer extends React.Component {
         if (currDur) {
             return currDur - 1;
         } else if (this.state.isActive) {
-
             this.setState(prevState => ({
                 isActive: !prevState.isActive
             }));
+
+            // Show notification for break
+            notify({
+                msg: 'Break Time!!',
+                body: 'Relax a bit.',
+                icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+            });
+
         } else {
             this.setState(prevState => ({
                 isActive: !prevState.isActive
             }));
+
+            notify({
+                msg: 'Back to Work!',
+                body: 'Keep rolling.',
+                icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+            });
         }
     }
 
