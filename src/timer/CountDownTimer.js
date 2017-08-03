@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormattedDuration from './FormattedDuration';
+// import Notification from './../Notification';
 
 export default class CountDownTimer extends React.Component {
 
@@ -23,6 +24,8 @@ export default class CountDownTimer extends React.Component {
             isTicking: true,
             isActive: true
         });
+
+        // Notification.notifyMe();
 
         this.timerId = setInterval(
             () => this.tick(),
@@ -80,16 +83,14 @@ export default class CountDownTimer extends React.Component {
      * Defines how component to be rendered
      */
     render() {
-        return <div>
-            <h3> Timer </h3>
-
+        return (<div>
             <FormattedDuration duration={this.state.duration} isActive={this.state.isActive} />
 
             {this.state.isTicking
-                ? <button onClick={this.stopTimer}>Stop</button>
-                : <button onClick={this.startTimer}>Start</button>
+                ? <button className="btn btn-primary" onClick={this.stopTimer}>Stop</button>
+                : <button className="btn btn-primary" onClick={this.startTimer}>Start</button>
             }
-        </div>
+        </div>)
     }
 
     /**

@@ -2,9 +2,13 @@ import React from 'react';
 import './../App.css';
 
 let FormattedDuration = (props) => {
-    return (<h2 className={props.isActive ? 'active' : 'inactive'}>
-        {formatDuration(props.duration)}
-    </h2>);
+    return (
+    <div className="timer">
+        <span className={props.isActive ? 'active' : 'inactive'}>
+            {formatDuration(props.duration)}
+        </span>
+    </div>
+    );
 }
 
 /**
