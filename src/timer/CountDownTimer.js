@@ -112,7 +112,7 @@ export default class CountDownTimer extends React.Component {
             <div className="actions">
 
                 {this.state.isTicking
-                    ? <button className="btn btn-round btn-red btn-animate" onClick={this.stopTimer}>Stop</button>
+                    ? <button className="btn btn-round btn-start btn-animate" onClick={this.stopTimer}>Stop</button>
                     : <button className="btn btn-primary btn-round" onClick={this.startTimer}>Start</button>
                 }
 

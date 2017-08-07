@@ -81,6 +81,12 @@ button {
   text-align: center;
 }
 
+.btn-start {
+  background: #9FDE23;
+  color: #f1f1f1;
+  text-align: center;
+}
+
 .btn-round {
   width: 70px;
   height: 70px;
@@ -91,7 +97,7 @@ button {
 }
 
 .btn-animate {
-  animation: heart-beat infinite 1s linear;
+  animation: heart-beat-green infinite 1s linear;
 }
 
 @keyframes heart-beat {
@@ -99,5 +105,24 @@ button {
   60% { box-shadow: 0px 0px 10px red;}
   80% { box-shadow: 0px 0px 0px red;}
   90% { box-shadow: 0px 0px 6px red;}
+}
+
+@keyframes heart-beat-green {
+  0% { 
+    box-shadow: 0px 0px 0px #60890D;
+    /* transform: scale(1); */
+  }
+  60% { 
+    box-shadow: 0px 0px 10px #60890D;
+    /* transform: scale(0.9); */
+  }
+  80% { 
+    box-shadow: 0px 0px 0px #60890D;
+    /* transform: scale(0.95); */
+  }
+  90% { 
+    box-shadow: 0px 0px 6px #60890D;
+    /* transform: scale(0.9); */
+  }
 }
 
