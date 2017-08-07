@@ -27,7 +27,7 @@ export default class CountDownTimer extends React.Component {
 
         this.timerId = setInterval(
             () => this.tick(),
-            1000);
+            500);
     }
 
     /**
@@ -76,7 +76,7 @@ export default class CountDownTimer extends React.Component {
         const currDur = this.state.duration;
 
         if (currDur) {
-            return currDur - 1;
+            return currDur - 0.5;
         } else if (this.state.isActive) {
             this.setState(prevState => ({
                 isActive: !prevState.isActive
@@ -138,7 +138,7 @@ export default class CountDownTimer extends React.Component {
      */
     getDuration = (currDur) => {
         return (currDur
-            ? currDur - 1
+            ? currDur - 0.5
             : (this.state.isActive
                 ? this.props.breakDuration
                 : this.props.activeDuration
