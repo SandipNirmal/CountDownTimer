@@ -55,7 +55,7 @@ export default class Settings extends React.Component {
      */
     changeActive = (e) => {
         this.setState({
-            active: e.target.value
+            active: e.target.value * 60 // store in seconds
         })
     }
 
@@ -64,7 +64,7 @@ export default class Settings extends React.Component {
      */
     changeBreakTime = (e) => {
         this.setState({
-            breakTime: e.target.value
+            breakTime: e.target.value * 60  // store in seconds
         })
     }
 
@@ -78,16 +78,22 @@ export default class Settings extends React.Component {
                 <form onSubmit={this.saveSettings}>
                     <div>
                         <label> Active Time (in Min): </label>
-                        <input type="number" value={active} onChange={this.changeActive} />
+                        <input type="number"
+                            value={active / 60}
+                            onChange={this.changeActive}
+                            min="5" />
                     </div>
 
                     <div>
                         <label> Break Time (in Min): </label>
-                        <input type="number" value={breakTime} onChange={this.changeBreakTime} />
+                        <input type="number"
+                            value={breakTime / 60}
+                            onChange={this.changeBreakTime}
+                            min="2" />
                     </div>
 
                     <div>
-                        <input type="submit" />
+                        <input type="submit" value="Save Settings"/>
                     </div>
                 </form>
             </div>

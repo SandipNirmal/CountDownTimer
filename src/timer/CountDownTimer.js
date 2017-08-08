@@ -121,8 +121,15 @@ export default class CountDownTimer extends React.Component {
         const settings = JSON.parse(localStorage.getItem('settings'));
 
         if (settings) {
-            defaultProps.activeDuration = settings.active * 60; // time in seconds
-            defaultProps.breakDuration = settings.breakTime * 60;   // time in seconds
+            defaultProps.activeDuration = settings.active; // time in seconds
+            defaultProps.breakDuration = settings.breakTime;   // time in seconds
+        } else {
+            const settings = {
+                active: defaultProps.activeDuration,
+                breakTime: defaultProps.breakDuration
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
         }
     }
 

@@ -3,11 +3,11 @@ import './../App.css';
 
 let FormattedDuration = (props) => {
     return (
-    <div className="timer">
-        <span className={props.isActive ? 'active' : 'inactive'}>
-            {formatDuration(props.duration)}
-        </span>
-    </div>
+        <div className="timer">
+            <span className={props.isActive ? 'active' : 'inactive'}>
+                {formatDuration(props.duration)}
+            </span>
+        </div>
     );
 }
 
@@ -22,7 +22,7 @@ let formatDuration = (duration = 0) => {
     const d = Number(duration);
 
     let hours = Math.floor(d / 3600),
-        mins = Math.floor(d / 60),
+        mins = hours ? Math.floor((d - hours * 3600) / 60) : Math.floor(d / 60),
         secs = Math.floor(d % 60);
 
     hours = (hours > 0 && hours < 9) ? `0${hours}` : hours;
