@@ -3,6 +3,14 @@ import React from 'react';
 import FormattedDuration from './FormattedDuration';
 import { notify } from './../Notifier';
 
+/**
+ * Default propertis for countDown timer
+ */
+let defaultProps = {
+    activeDuration: 25 * 60, // 25 active minutes
+    breakDuration: 5 * 60   // 5 mins of break time
+}
+
 export default class CountDownTimer extends React.Component {
 
     constructor(props) {
@@ -49,7 +57,7 @@ export default class CountDownTimer extends React.Component {
 
         // set duration to the active duration
         this.setState({
-            duration: this.props.activeDuration
+            duration: defaultProps.activeDuration
         });
     }
 
@@ -57,8 +65,11 @@ export default class CountDownTimer extends React.Component {
      * React lifecycle hook event on component init
      */
     componentDidMount() {
+        // load values from settings
+        this.loadSettings();
+
         this.setState({
-            duration: this.props.activeDuration
+            duration: defaultProps.activeDuration
         });
     }
 
@@ -103,6 +114,19 @@ export default class CountDownTimer extends React.Component {
     }
 
     /**
+     * Checks settings for active and break time values. If available 
+     * use it from LocalStorage or use default values
+     */
+    loadSettings = () => {
+        const settings = JSON.parse(localStorage.getItem('settings'));
+
+        if (settings) {
+            defaultProps.activeDuration = settings.active * 60; // time in seconds
+            defaultProps.breakDuration = settings.breakTime * 60;   // time in seconds
+        }
+    }
+
+    /**
      * Defines how component to be rendered
      */
     render() {
@@ -140,17 +164,9 @@ export default class CountDownTimer extends React.Component {
         return (currDur
             ? currDur - 0.5
             : (this.state.isActive
-                ? this.props.breakDuration
-                : this.props.activeDuration
+                ? defaultProps.breakDuration
+                : defaultProps.activeDuration
             )
         );
     }
-}
-
-/**
- * Default propertis for countDown timer
- */
-CountDownTimer.defaultProps = {
-    activeDuration: 25 * 60, // 25 active minutes
-    breakDuration: 5 * 60   // 5 mins of break time
 }

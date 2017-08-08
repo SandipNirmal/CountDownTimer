@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 const Header = () => (
     <header className="header">
         <div className="logo">
-            <Link to='/'>Timer</Link>
+            <Link to='/' style={{ textDecoration: 'none' }}>Timer</Link>
         </div>
         <div className="menu">
-            <Link to='/settings'>Settings</Link>
-        </div> 
+            <Link to='/settings' style={{ textDecoration: 'none' }}>Settings</Link>
+        </div>
     </header>
 )
 
