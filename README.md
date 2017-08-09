@@ -1,4 +1,4 @@
-# Pomodoro APP
+# Pomodoro App
 Pomodoro app built in React using react cli create-react-app.
 
 ### Features
