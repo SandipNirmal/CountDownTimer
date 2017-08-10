@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FormattedDuration from './FormattedDuration';
-import { notify } from './../Notifier';
+import { notify, requestPermission } from './../Notifier';
 
 /**
  * Default propertis for countDown timer
@@ -67,6 +67,9 @@ export default class CountDownTimer extends React.Component {
     componentDidMount() {
         // load values from settings
         this.loadSettings();
+
+        // check for browser notification permission
+        requestPermission();
 
         this.setState({
             duration: defaultProps.activeDuration
