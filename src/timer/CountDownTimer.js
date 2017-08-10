@@ -1,119 +1,119 @@
 import React from 'react';
 
 import FormattedDuration from './FormattedDuration';
-import { notify, requestPermission } from './../Notifier';
+import Notifier from './../Notifier';
 
 /**
  * Default propertis for countDown timer
  */
 let defaultProps = {
-    activeDuration: 25 * 60, // 25 active minutes
-    breakDuration: 5 * 60   // 5 mins of break time
+  activeDuration: 25 * 60, // 25 active minutes
+  breakDuration: 5 * 60 // 5 mins of break time
 }
 
 export default class CountDownTimer extends React.Component {
 
     constructor(props) {
-        super(props);
+      super(props);
 
-        // Set initial states for the countdown
-        this.state = {
-            isTicking: false,
-            isActive: false,
-            duration: 25 * 60   // 25 minutes in seconds
-        }
+      // Set initial states for the countdown
+      this.state = {
+        isTicking: false,
+        isActive: false,
+        duration: 25 * 60 // 25 minutes in seconds
+      }
     }
 
     /**
      * Method to start the countdown timer
      */
     startTimer = () => {
-        this.setState({
-            isTicking: true,
-            isActive: true
-        });
+      this.setState({
+        isTicking: true,
+        isActive: true
+      });
 
-        this.timerId = setInterval(
-            () => this.tick(),
-            500);
+      this.timerId = setInterval(
+        () => this.tick(),
+        500);
     }
 
     /**
      * Method to stop countdown timer
      */
     stopTimer = () => {
-        clearInterval(this.timerId);
+      clearInterval(this.timerId);
 
-        this.setState({
-            isTicking: false
-        });
+      this.setState({
+        isTicking: false
+      });
     }
 
     /**
      * Resets the timer
      */
     resetTimer = () => {
-        this.stopTimer();
+      this.stopTimer();
 
-        // set duration to the active duration
-        this.setState({
-            duration: defaultProps.activeDuration
-        });
+      // set duration to the active duration
+      this.setState({
+        duration: defaultProps.activeDuration
+      });
     }
 
     /**
      * React lifecycle hook event on component init
      */
     componentDidMount() {
-        // load values from settings
-        this.loadSettings();
+      // load values from settings
+      this.loadSettings();
 
-        // check for browser notification permission
-        requestPermission();
+      // check for browser notification permission
+      Notifier.requestPermission();
 
-        this.setState({
-            duration: defaultProps.activeDuration
-        });
+      this.setState({
+        duration: defaultProps.activeDuration
+      });
     }
 
     /**
      * React lifecycle hook event before component destruction
      */
     componentWillUnmount() {
-        this.stopTimer();
+      this.stopTimer();
     }
 
     /**
      * React lifecycle hook event on component update
      */
     componentWillUpdate() {
-        const currDur = this.state.duration;
+      const currDur = this.state.duration;
 
-        if (currDur) {
-            return currDur - 0.5;
-        } else if (this.state.isActive) {
-            this.setState(prevState => ({
-                isActive: !prevState.isActive
-            }));
+      if (currDur) {
+        return currDur - 0.5;
+      } else if (this.state.isActive) {
+        this.setState(prevState => ({
+          isActive: !prevState.isActive
+        }));
 
-            // Show notification for break
-            notify({
-                msg: 'Break Time!!',
-                body: 'Relax a bit.',
-                icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
-            });
+        // Show notification for break
+        Notifier.notify({
+          msg: 'Break Time!!',
+          body: 'Relax a bit.',
+          icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+        });
 
-        } else {
-            this.setState(prevState => ({
-                isActive: !prevState.isActive
-            }));
+      } else {
+        this.setState(prevState => ({
+          isActive: !prevState.isActive
+        }));
 
-            notify({
-                msg: 'Back to Work!',
-                body: 'Keep rolling.',
-                icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
-            });
-        }
+        Notifier.notify({
+          msg: 'Back to Work!',
+          body: 'Keep rolling.',
+          icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+        });
+      }
     }
 
     /**
@@ -121,62 +121,81 @@ export default class CountDownTimer extends React.Component {
      * use it from LocalStorage or use default values
      */
     loadSettings = () => {
-        const settings = JSON.parse(localStorage.getItem('settings'));
+      const settings = JSON.parse(localStorage.getItem('settings'));
 
-        if (settings) {
-            defaultProps.activeDuration = settings.active; // time in seconds
-            defaultProps.breakDuration = settings.breakTime;   // time in seconds
-        } else {
-            const settings = {
-                active: defaultProps.activeDuration,
-                breakTime: defaultProps.breakDuration
-            };
+      if (settings) {
+        defaultProps.activeDuration = settings.active; // time in seconds
+        defaultProps.breakDuration = settings.breakTime; // time in seconds
+      } else {
+        const settings = {
+          active: defaultProps.activeDuration,
+          breakTime: defaultProps.breakDuration
+        };
 
-            localStorage.setItem('settings', JSON.stringify(settings));
-        }
+        localStorage.setItem('settings', JSON.stringify(settings));
+      }
     }
 
     /**
      * Defines how component to be rendered
      */
     render() {
-        return (<div>
-            <FormattedDuration duration={this.state.duration} isActive={this.state.isActive} />
+      return ( < div >
+        <
+        FormattedDuration duration = {
+          this.state.duration
+        }
+        isActive = {
+          this.state.isActive
+        }
+        />
 
-            <div className="actions">
+        <
+        div className = "actions" >
 
-                {this.state.isTicking
-                    ? <button className="btn btn-round btn-start btn-animate" onClick={this.stopTimer}>Stop</button>
-                    : <button className="btn btn-primary btn-round" onClick={this.startTimer}>Start</button>
-                }
+        {
+          this.state.isTicking ?
+          < button className = "btn btn-round btn-start btn-animate"
+          onClick = {
+            this.stopTimer
+          } > Stop < /button> :
+            < button className = "btn btn-primary btn-round"
+          onClick = {
+            this.startTimer
+          } > Start < /button>
+        }
 
-                <button className="btn btn-secondary btn-round" onClick={this.resetTimer}>Reset</button>
-            </div>
-        </div>)
-    }
+        <
+        button className = "btn btn-secondary btn-round"
+        onClick = {
+          this.resetTimer
+        } > Reset < /button> <
+        /div> <
+        /div>)
+      }
 
-    /**
-     * Method to update count down duration
-     */
-    tick() {
+      /**
+       * Method to update count down duration
+       */
+      tick() {
         this.setState(prevState => ({
-            duration: this.getDuration(prevState.duration)
+          duration: this.getDuration(prevState.duration)
         }));
-    }
+      }
 
-    /**
-     * Returns duration value by checking if active or break duration
-     * is running and by checking duration remainng
-     * @param {number} currDur - current active duration value
-     * @returns {number} updated duration
-     */
-    getDuration = (currDur) => {
-        return (currDur
-            ? currDur - 0.5
-            : (this.state.isActive
-                ? defaultProps.breakDuration
-                : defaultProps.activeDuration
-            )
+      /**
+       * Returns duration value by checking if active or break duration
+       * is running and by checking duration remainng
+       * @param {number} currDur - current active duration value
+       * @returns {number} updated duration
+       */
+      getDuration = (currDur) => {
+        return (currDur ?
+          currDur - 0.5 :
+          (this.state.isActive ?
+            defaultProps.breakDuration :
+            defaultProps.activeDuration
+          )
         );
+      }
     }
-}
