@@ -65,6 +65,11 @@ button {
   background: #ffffff;
 }
 
+.btn:focus {
+  border: 0;
+  outline: none;
+}
+
 .btn-primary {
   background: #673ab7;
   color: #f1f1f1;

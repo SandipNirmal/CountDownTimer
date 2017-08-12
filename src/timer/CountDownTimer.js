@@ -4,10 +4,11 @@ import FormattedDuration from './FormattedDuration';
 import Notifier from './../Notifier';
 
 // let TimerWorker = require("worker-loader!./../utils/timerWorker.js");
-let TimerWorker = require("worker!./../utils/timerWorker.js");
+// let TimerWorker = require("worker-loader!./../utils/timerWorker.js");
 // const timeWorker = new Worker('./../utils/timerWorker.js');
 
 // Worker commands
+// eslint-disable-next-line
 const COMMANDS = {
   START: 'Start',
   STOP: 'Stop'
@@ -35,7 +36,7 @@ export default class CountDownTimer extends React.Component {
   }
 
   componentWillMount() {
-    this.timeWorker = new TimerWorker();
+    // this.timeWorker = new TimerWorker();
   }
 
   /**
@@ -48,7 +49,11 @@ export default class CountDownTimer extends React.Component {
     });
 
     // Send start message to worker
-    this.timeWorker.postMessage(COMMANDS.START);
+    // this.timeWorker.postMessage(COMMANDS.START);
+
+    this.timerId = setInterval(() => {
+      this.tick();
+    }, 1000);
   }
 
   /**
@@ -60,7 +65,9 @@ export default class CountDownTimer extends React.Component {
     });
 
     // Send stop message to worker
-    this.timeWorker.postMessage(COMMANDS.STOP);
+    // this.timeWorker.postMessage(COMMANDS.STOP);
+
+    clearInterval(this.timerId);
   }
 
   /**
@@ -86,9 +93,9 @@ export default class CountDownTimer extends React.Component {
     Notifier.requestPermission();
 
     // register handler for worker postMessage
-    this.timeWorker.onmessage = (event) => {
-      this.onMessageHandler(event);
-    };
+    // this.timeWorker.onmessage = (event) => {
+    //   this.onMessageHandler(event);
+    // };
 
     // Set initial state
     this.setState({
@@ -102,7 +109,7 @@ export default class CountDownTimer extends React.Component {
   componentWillUnmount() {
     this.stopTimer();
     // terminate the worker thread when unmounting the component
-    this.timeWorker.terminate();
+    // this.timeWorker.terminate();
   }
 
   /**
