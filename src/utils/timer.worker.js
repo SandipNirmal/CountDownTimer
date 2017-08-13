@@ -1,3 +1,5 @@
+/*eslint-env es6*/
+
 // id for running current interval
 let timerId = '';
 
@@ -25,7 +27,8 @@ function stopTimer() {
  * 
  * @param {string} msg - message sent from file running in main thread
  */
-function onmessage(msg) {
+/*eslint no-undef: 0 */
+ onmessage = (msg) => {
     console.log('Worker: Message recieved', msg);
 
     switch (msg.data) {
