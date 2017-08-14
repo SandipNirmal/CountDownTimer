@@ -83,6 +83,7 @@ function startTimer() {
     timerId = setInterval(function() {
         i++;
         postMessage(i);
+        // console.log(new Date());
     }, 1000);
 }
 
@@ -120,4 +121,4 @@ function stopTimer() {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=28951052aa0b3ff407da.worker.js.map
+//# sourceMappingURL=8110561d5f0b69c316ff.worker.js.map
