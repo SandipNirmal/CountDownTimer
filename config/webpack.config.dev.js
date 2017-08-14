@@ -118,7 +118,6 @@ module.exports = {
           {
             options: {
               formatter: eslintFormatter,
-              
             },
             loader: require.resolve('eslint-loader'),
           },

@@ -1,14 +1,11 @@
 import React from 'react';
 
 import FormattedDuration from './FormattedDuration';
-import Notifier from './../Notifier';
+import Notifier from './../utils/Notifier';
 
-// let TimerWorker = require("worker-loader!./../utils/timerWorker.js");
 let TimerWorker = require("./../utils/timer.worker.js");
-// const timeWorker = new Worker('./../utils/timerWorker.js');
 
 // Worker commands
-// eslint-disable-next-line
 const COMMANDS = {
   START: 'Start',
   STOP: 'Stop'
@@ -48,6 +45,9 @@ export default class CountDownTimer extends React.Component {
       isActive: true
     });
 
+    // check for browser notification permission
+    Notifier.requestPermission();
+
     // Send start message to worker
     this.timeWorker.postMessage(COMMANDS.START);
   }
@@ -82,9 +82,6 @@ export default class CountDownTimer extends React.Component {
   componentDidMount() {
     // load values from settings
     this.loadSettings();
-
-    // check for browser notification permission
-    Notifier.requestPermission();
 
     // register handler for worker postMessage
     this.timeWorker.onmessage = this.onMessageHandler;
@@ -167,11 +164,11 @@ export default class CountDownTimer extends React.Component {
         <div className="actions" >
           {
             this.state.isTicking ?
-              <button className="btn btn-round btn-start btn-animate" onClick={this.stopTimer}>Stop</button>
-              : < button className="btn btn-primary btn-round" onClick={this.startTimer}>Start</button>
+              <button className="butn butn-round butn-start butn-animate" onClick={this.stopTimer}>Stop</button>
+              : < button className="butn btn-primary butn-round" onClick={this.startTimer}>Start</button>
           }
 
-          <button className="btn btn-secondary btn-round" onClick={this.resetTimer}> Reset </button>
+          <button className="butn butn-secondary butn-round" onClick={this.resetTimer}> Reset </button>
         </div>
       </div>
     )
@@ -207,6 +204,7 @@ export default class CountDownTimer extends React.Component {
    * @param {Object} event - Web worker event
    */
   onMessageHandler = (event) => {
+    // console.log(new Date());
     this.tick();
   }
 }

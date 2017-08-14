@@ -5,12 +5,10 @@ import { BrowserRouter, HashRouter } from 'react-router-dom'
 
 import App from './App';
 import './index.css';
-import './App.css';
 
 render((
 
   // Use BrowserRouter for dyanamic servers
-
   // <BrowserRouter>
   //   <App />
   // </BrowserRouter>

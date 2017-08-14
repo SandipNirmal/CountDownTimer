@@ -23,7 +23,7 @@ body {
   justify-content: space-between;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 540px) {
   .header {
     width: 100vw;
   }
@@ -35,10 +35,7 @@ body {
   padding: 0 20px;
 }
 
-.container {
-  width: 320px;
-  margin: 50px auto;
-  height: 100px;
+.align-center {
   text-align: center;
 }
 
@@ -55,7 +52,7 @@ button {
   margin: 5px;
 }
 
-.btn {
+.butn {
   border: 1px solid #e1e1e1;
   border-radius: 3px;
   padding: 4px 12px;
@@ -63,9 +60,10 @@ button {
   font-size: 18px;
   font-weight: 600;
   background: #ffffff;
+  margin: 5px;
 }
 
-.btn:focus {
+.butn-round:focus {
   border: 0;
   outline: none;
 }
@@ -75,34 +73,53 @@ button {
   color: #f1f1f1;
 }
 
-.btn-secondary {
+.butn-secondary {
   background: #FF5E99;
   color: #ffffff;
 }
 
-.btn-red {
+.butn-red {
   background: #FF3333;
   color: #ffffff;
   text-align: center;
 }
 
-.btn-start {
+.butn-start {
   background: #9FDE23;
   color: #f1f1f1;
   text-align: center;
 }
 
-.btn-round {
+.butn-round {
   width: 70px;
   height: 70px;
   border: 0;
   padding: 0;
   font-weight: 600;
   border-radius: 35px;
+  color: #ffffff;
 }
 
-.btn-animate {
+.butn-round:hover {
+  color: #ffffff;
+}
+
+.butn-animate {
   animation: heart-beat-green infinite 1s linear;
+}
+
+.form-controls {
+  padding: 4px 2px;
+}
+
+.form-controls label {
+  padding-right: 20px;
+}
+
+.form-controls input[type="number"] {
+  width: 100px;
+  margin-left: 10px;
+  padding-left: 5px;
 }
 
 @keyframes heart-beat {

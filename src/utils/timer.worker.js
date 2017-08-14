@@ -11,6 +11,7 @@ function startTimer() {
     timerId = setInterval(function() {
         i++;
         postMessage(i);
+        // console.log(new Date());
     }, 1000);
 }
 
