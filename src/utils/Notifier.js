@@ -11,7 +11,7 @@ const Notifier = {
     const {
       msg = 'Break Time!',
       body = '',
-      icon = process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+      icon = process.env.PUBLIC_URL + '/icons/128x128.png'
     } = notificationObj;
 
     // Let's check if the browser supports notifications
