@@ -161,14 +161,14 @@ export default class CountDownTimer extends React.Component {
     return (
       <div>
         <FormattedDuration duration={this.state.duration} isActive={this.state.isActive} />
-        <div className="actions" >
+        <div className="actions">
           {
             this.state.isTicking ?
-              <button className="butn butn-round butn-start butn-animate" onClick={this.stopTimer}>Stop</button>
-              : < button className="butn btn-primary butn-round" onClick={this.startTimer}>Start</button>
+              <button className="btn app-btn" onClick={this.stopTimer}>Stop</button>
+              : < button className="btn app-btn" onClick={this.startTimer}>Start</button>
           }
 
-          <button className="butn butn-secondary butn-round" onClick={this.resetTimer}> Reset </button>
+          <button className="btn app-btn" onClick={this.resetTimer}> Reset </button>
         </div>
       </div>
     )

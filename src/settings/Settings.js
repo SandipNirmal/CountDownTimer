@@ -73,11 +73,11 @@ export default class Settings extends React.Component {
         const { active, breakTime } = this.state;
 
         return (
-            <div>
-                <h4>Settings:</h4>
+            <div className="settings">
                 <form onSubmit={this.saveSettings} className="form-inline">
                     <div className="form-controls">
-                        <label> <h6>Active Time (in Min):</h6> </label>
+                        <label> 
+                            <h5>Active Time (in Min):</h5> </label>
                         <input type="number"
                             value={active / 60}
                             onChange={this.changeActive}
@@ -85,15 +85,17 @@ export default class Settings extends React.Component {
                     </div>
 
                     <div className="form-controls">
-                        <label> <h6>Break Time (in Min):</h6> </label>
+                        <label>
+                            <h5>Break Time (in Min):</h5>
+                        </label>
                         <input type="number"
                             value={breakTime / 60}
                             onChange={this.changeBreakTime}
                             min="2"/>
                     </div>
 
-                    <div className="form-controls">
-                        <input type="submit" className="btn btn-primary" value="Save Settings"/>
+                    <div className="form-controls btn-actions">
+                        <input type="submit" className="btn app-btn" value="Save"/>
                     </div>
                 </form>
             </div>

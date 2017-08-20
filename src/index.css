@@ -4,29 +4,27 @@
 }
 
 body {
-  background: #ffffff;
+  background: #f6f6f6;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #324d52;
+  color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100vw;
 }
 
-.header {
-  width: 540px;
-  height: 50px;
-  margin: 0 auto;
-  border-bottom: 1px solid #e1e1e1;
-  display: flex;
-  justify-content: space-between;
+a, a:hover, a:focus {
+  color: #ffffff;
+  text-decoration: none;
 }
 
-@media (max-width: 540px) {
-  .header {
-    width: 100vw;
-  }
+.header {
+  height: 50px;
+  margin: 0 auto;
+  /* border-bottom: 1px solid #e1e1e1; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo,
@@ -39,9 +37,31 @@ body {
   text-align: center;
 }
 
+.app {
+  width: 320px;
+  height: 80vh;
+  margin: 10vh auto;
+  background-color: #00BCD4;
+}
+
+.card {
+  border-radius: 3px;
+  z-index: 500;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
+}
+
+@media (max-width: 320px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+}
+
 .timer {
-  font-size: 2em;
-  padding: 20px;
+  font-size: 3em;
+  padding: 30px 20px;
+  height: 50vh;
 }
 
 button {
@@ -108,12 +128,33 @@ button {
   animation: heart-beat-green infinite 1s linear;
 }
 
+.app-btn, .app-btn:hover, .app-btn:focus, .app-btn:active {
+  background: #00BCD4;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  min-width: 70px;
+  font-size: 1em;
+  height: 40px;
+  letter-spacing: .5px;
+  line-height: 40px;
+  padding: 0 24px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: none;
+  border-radius: 2px;
+  text-shadow: none;
+}
+
+.app-btn:focus, .app-btn:active {
+  outline: none;
+}
+
 .form-controls {
   padding: 4px 2px;
 }
 
 .form-controls label {
-  padding-right: 20px;
+  /* padding-right: 20px; */
 }
 
 .form-controls input[type="number"] {
@@ -160,3 +201,22 @@ button {
   }
 }
 
+.settings {
+  padding: 60px 0;
+}
+
+.form-controls input[type="number"] {
+  width: 100px;
+  margin-left: 10px;
+  padding-left: 5px;
+  background: inherit;
+  color: #ffffff;
+  font-size: 1.2em;
+  box-shadow: none;
+  border-radius: 2px;
+  border: 1px solid #e1e1e1;
+}
+
+.btn-actions {
+  margin-top: 60px;
+}

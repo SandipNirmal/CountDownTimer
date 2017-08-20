@@ -5,7 +5,7 @@ import Settings from './settings/Settings';
 import CountDownTimer from './timer/CountDownTimer';
 
 const Main = () => (
-  <main className="App">
+  <main className="align-center">
     <Switch>
       <Route exact path='/' component={CountDownTimer}/>
       <Route path='/settings' component={Settings}/>
