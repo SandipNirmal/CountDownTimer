@@ -129,25 +129,33 @@ button {
   animation: heart-beat-green infinite 1s linear;
 }
 
-.app-btn, .app-btn:hover, .app-btn:focus, .app-btn:active {
+.app-btn {
   background: #00BCD4;
   color: #ffffff;
   border: 1px solid #ffffff;
-  min-width: 70px;
   font-size: 1em;
   height: 40px;
   letter-spacing: .5px;
-  line-height: 40px;
   padding: 0 24px;
   text-transform: uppercase;
   white-space: nowrap;
   box-shadow: none;
-  border-radius: 2px;
   text-shadow: none;
+  font-weight: 600;
+  border: 2px solid;
+  border-radius: 20px;
+  min-width: 100px;
+  line-height: 36px;
 }
 
-.app-btn:focus, .app-btn:active {
+.app-btn:hover, .app-btn:focus, .app-btn:active, .app-btn:visited {
   outline: none;
+  background: #00BCD4;
+  color: #fff;
+}
+
+.app-btn:hover, .app-btn:focus {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .15);
 }
 
 .form-controls {
@@ -226,3 +234,17 @@ button {
   transition: all 500ms linear;
   stroke-linecap: round;
 }
+
+.progress-text {
+  transform: rotate(90deg);
+  stroke: none;
+  fill: #ffffff;
+}
+
+/* .active {
+  color: #283593;
+}
+
+.inactive {
+  color: #8bc34a;
+} */
