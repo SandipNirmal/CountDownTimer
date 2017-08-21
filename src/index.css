@@ -25,6 +25,7 @@ a, a:hover, a:focus {
   /* border-bottom: 1px solid #e1e1e1; */
   display: flex;
   justify-content: space-between;
+  /* flex-direction: row-reverse; */
 }
 
 .logo,
@@ -219,4 +220,9 @@ button {
 
 .btn-actions {
   margin-top: 60px;
+}
+
+.progress{
+  transition: all 500ms linear;
+  stroke-linecap: round;
 }

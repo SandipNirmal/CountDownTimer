@@ -7,7 +7,7 @@
  /*eslint no-restricted-globals:0*/
 
 // App version
-const CACHE_NAME = 'app-v0.0.2';
+const CACHE_NAME = 'app-v0.0.3';
 
 // Set this to true for production
 var doCache = false;

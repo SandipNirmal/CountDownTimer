@@ -1,11 +1,19 @@
 import React from 'react';
 
+import ProgressIndicator from './progressIndicator';
+
 let FormattedDuration = (props) => {
+
+    let totalDuration = props.totalDuration;
+    let duration = props.duration;
+    let progress = (totalDuration - duration) / totalDuration;
+
     return (
         <div className="timer">
             <span className={props.isActive ? 'active' : 'inactive'}>
                 {formatDuration(props.duration)}
             </span>
+            <ProgressIndicator progressValue={progress} />
         </div>
     );
 }

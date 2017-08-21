@@ -158,9 +158,16 @@ export default class CountDownTimer extends React.Component {
    * Defines how component to be rendered
    */
   render() {
+    let totalDuration = this.state.isActive ? defaultProps.activeDuration : defaultProps.breakDuration;
+
     return (
       <div>
-        <FormattedDuration duration={this.state.duration} isActive={this.state.isActive} />
+
+        <FormattedDuration
+          duration={this.state.duration}
+          isActive={this.state.isActive}
+          totalDuration={totalDuration} />
+
         <div className="actions">
           {
             this.state.isTicking ?
