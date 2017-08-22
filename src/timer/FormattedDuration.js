@@ -16,9 +16,10 @@ let FormattedDuration = (props) => {
             <span></span>
             } */}
             <div className="timer">
-                <ProgressIndicator 
-                    progressValue={progress} 
-                    progressText={formatDuration(props.duration)}/>
+                <ProgressIndicator
+                    isActive={props.isActive}
+                    progressValue={progress}
+                    progressText={formatDuration(props.duration)} />
             </div>
         </div>
     );

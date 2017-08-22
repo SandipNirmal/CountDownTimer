@@ -26,6 +26,7 @@ a, a:hover, a:focus {
   display: flex;
   justify-content: space-between;
   /* flex-direction: row-reverse; */
+  text-shadow: 2px 2px 1px rgba(0,0,0,0.15)
 }
 
 .logo,
@@ -49,14 +50,6 @@ a, a:hover, a:focus {
   border-radius: 3px;
   z-index: 500;
   box-shadow: 0 6px 12px rgba(0, 0, 0, .3);
-}
-
-@media (max-width: 320px) {
-  .app {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-  }
 }
 
 .timer {
@@ -130,9 +123,10 @@ button {
 }
 
 .app-btn {
-  background: #00BCD4;
+  /* background: #00BCD4; */
+  background: #0277bd;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  /* border: 1px solid #ffffff; */
   font-size: 1em;
   height: 40px;
   letter-spacing: .5px;
@@ -143,19 +137,22 @@ button {
   text-shadow: none;
   font-weight: 600;
   border: 2px solid;
-  border-radius: 20px;
+  border-radius: 4px;
   min-width: 100px;
   line-height: 36px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .15);
+  border: none;
 }
 
 .app-btn:hover, .app-btn:focus, .app-btn:active, .app-btn:visited {
   outline: none;
-  background: #00BCD4;
+  /* background: #00BCD4; */
+  background-color: #004c8c;
   color: #fff;
 }
 
 .app-btn:hover, .app-btn:focus {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .15);
+  /* box-shadow: 0 6px 12px rgba(0, 0, 0, .15); */
 }
 
 .form-controls {
@@ -248,3 +245,28 @@ button {
 .inactive {
   color: #8bc34a;
 } */
+
+
+/** Media Queries **/
+@media (max-width: 480px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+  }
+}
+
+@media (min-width: 480px) and (orientation: landscape) {
+  /* .app{
+    width: 320px;
+    height: 480px;
+  } */
+
+  /* .actions {
+    margin-top: 25vh;
+  } */
+
+  /* .timer {
+    height: 30vh;
+  } */
+}

@@ -5,15 +5,16 @@ let ProgressIndicator = (props) => {
     let radius = 100;
     let width = 240;
     let circumference = 2 * Math.PI * radius;
-    let currentProgress = props.progressValue >= 0 ? 
-            circumference * (1 - props.progressValue) : 
-            circumference;
+    let currentProgress = props.progressValue >= 0 ?
+        circumference * (1 - props.progressValue) :
+        circumference;
     let progressText = props.progressText;
+    let progressColor = props.isActive ? '#f77a52' : '#36b536';
 
     return (
         <div>
             <svg
-                style={{transform: 'rotate(-90deg)'}}
+                style={{ transform: 'rotate(-90deg)' }}
                 width={width}
                 height={width}
                 viewBox="0 0 240 240">
@@ -28,11 +29,11 @@ let ProgressIndicator = (props) => {
                     cx={width / 2} cy={width / 2}
                     r={radius}
                     fill="none"
-                    stroke="#f77a52"
+                    stroke={progressColor}
                     strokeWidth="15"
                     strokeDasharray={circumference}
                     strokeDashoffset={currentProgress} />
-                
+
                 <text x="50" y="-105" className="progress-text"> {progressText} </text>
             </svg>
         </div>
