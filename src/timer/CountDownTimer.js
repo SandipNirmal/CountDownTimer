@@ -126,11 +126,13 @@ export default class CountDownTimer extends React.Component {
         isActive: !prevState.isActive
       }));
 
-      Notifier.notify({
-        msg: 'Back to Work!',
-        body: 'Keep rolling.',
-        icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
-      });
+      if (this.state.breakTime) {
+        Notifier.notify({
+          msg: 'Back to Work!',
+          body: 'Keep rolling.',
+          icon: process.env.PUBLIC_URL + '/imgs/img-bell-icon.png'
+        });
+      }
     }
   }
 
@@ -139,19 +141,23 @@ export default class CountDownTimer extends React.Component {
    * use it from LocalStorage or use default values
    */
   loadSettings = () => {
-    const settings = JSON.parse(localStorage.getItem('settings'));
+    let settings = JSON.parse(localStorage.getItem('settings'));
 
     if (settings) {
       defaultProps.activeDuration = settings.active; // time in seconds
       defaultProps.breakDuration = settings.breakTime; // time in seconds
     } else {
-      const settings = {
+      settings = {
         active: defaultProps.activeDuration,
         breakTime: defaultProps.breakDuration
       };
 
       localStorage.setItem('settings', JSON.stringify(settings));
     }
+
+    this.setState({
+      breakTime: settings.breakTime
+    })
   }
 
   /**
