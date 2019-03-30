@@ -7,7 +7,7 @@
  /*eslint no-restricted-globals:0*/
 
 // App version
-const CACHE_NAME = 'app-v0.0.3';
+const CACHE_NAME = 'app-v0.0.4';
 
 // Set this to true for production
 var doCache = false;
@@ -46,6 +46,7 @@ self.addEventListener('install', function(event) {
               // We could also cache any static assets like CSS or images
               const urlsToCache = [
                 "/index.html",
+								"/index.html/#/",
                 assets["main.js"]
               ]
               cache.addAll(urlsToCache)
